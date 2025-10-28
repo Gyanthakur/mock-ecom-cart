@@ -2,6 +2,22 @@
 
 A simple **full-stack shopping cart application** built using React (Frontend), Node/Express (Backend), and MongoDB for storing user data and cart items. This application demonstrates basic e-commerce functionality like adding/removing products from the cart, viewing the cart, and generating invoices in PDF format.
 
+
+### screenshots
+
+| Screen           | Screenshot                                                                                                                                              |
+|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Signup Page**  | ![Signup](https://github.com/user-attachments/assets/e595a3f2-c88d-439e-9413-28da72d3d69c)                                                           |
+| **Login Page**   | ![Login](https://github.com/user-attachments/assets/a17dd881-78d0-41ef-9000-90cc517540ee)                                                             |
+| **Home Page**    | ![Home](https://github.com/user-attachments/assets/3c259913-938f-491d-a8f6-deee71b67e76)                                                             |
+| **Product Page** | ![Product](https://github.com/user-attachments/assets/bc762736-a1d9-42fa-af1c-8815dd1ac261)                                                           |
+| **Cart Page**    | ![Cart](https://github.com/user-attachments/assets/f0209508-d060-4bb0-81b6-10c376bb3267)                                                              |
+| **Invoice Page** | ![Invoice](https://github.com/user-attachments/assets/fb72b20e-d4d2-4335-833b-db49bdb10ff5)                                                           |
+
+
+
+
+
 ## 🚀 Features
 
 ### Frontend
