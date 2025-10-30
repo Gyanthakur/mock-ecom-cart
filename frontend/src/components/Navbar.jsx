@@ -14,7 +14,6 @@ const Navbar = () => {
     <nav className="bg-gradient-to-r from-blue-600 to-indigo-600 shadow-xl sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="bg-white p-2 rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <ShoppingCart className="text-indigo-600 w-6 h-6" />
