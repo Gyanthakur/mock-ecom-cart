@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Eye, EyeOff, AlertCircle, Loader, ShoppingCart, Mail, Lock } from 'lucide-react';
 
 const Login = () => {
-  const { login } = useContext(AppContext);
+  const { login, backendUrl } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -29,7 +29,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post(backendUrl + '/api/auth/login', { email, password });
       setSuccess('Login successful! Redirecting...');
       login(response.data.token);
       setTimeout(() => navigate('/'), 1500);

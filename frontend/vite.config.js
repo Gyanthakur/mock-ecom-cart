@@ -5,10 +5,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      '/api': 'https://mock-ecom-cart-backend.onrender.com' 
-       
-    }
-  }
+  // server: {
+  //   proxy: {
+  //     // '/api': 'http://localhost:5000'   
+  //     '/api': 'https://mock-ecom-cart-backend.onrender.com'   
+  //   }
+  // }
 });

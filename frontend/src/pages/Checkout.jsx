@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirect
 
 const Checkout = () => {
-	const { user, cart } = useContext(AppContext);
+	const { user, cart, backendUrl } = useContext(AppContext);
 	const [receipt, setReceipt] = useState(null);
 	const [isProcessing, setIsProcessing] = useState(false);
 	const [showSuccess, setShowSuccess] = useState(false);
@@ -28,7 +28,7 @@ const Checkout = () => {
 	const handleCheckout = async () => {
 		setIsProcessing(true);
 		try {
-			const response = await axios.post("/api/checkout", { cartItems: cart });
+			const response = await axios.post(backendUrl + "/api/checkout", { cartItems: cart });
 			setReceipt(response.data);
 			setShowSuccess(true);
 			setTimeout(() => setShowSuccess(false), 3000);

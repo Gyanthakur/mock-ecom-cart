@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Eye, EyeOff, AlertCircle, Loader, ShoppingCart, User, Mail, Lock, CheckCircle } from 'lucide-react';
 
 const Signup = () => {
-  const { login } = useContext(AppContext);
+  const { login, backendUrl } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -65,7 +65,7 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('/api/auth/signup', {
+      const response = await axios.post(backendUrl + '/api/auth/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,

@@ -14,12 +14,14 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
         setError('');
-        const response = await axios.get('/api/products/products');
+        
+        const response = await axios.get(backendUrl + '/api/products/products');
         setProducts(response.data);
         setFilteredProducts(response.data);
       } catch (err) {

@@ -5,7 +5,7 @@ import Checkout from "./Checkout";
 import { Trash2, Plus, Minus, ShoppingBag, Package } from "lucide-react";
 
 const Cart = () => {
-	const { cart, removeFromCart, updateCartQty } = useContext(AppContext);
+	const { cart, removeFromCart, updateCartQty, backendUrl } = useContext(AppContext);
 	const [total, setTotal] = useState(0);
 	const [subtotal, setSubtotal] = useState(0);
 	const shippingCost = 100;
@@ -24,7 +24,7 @@ const Cart = () => {
 	const handleRemove = (itemId) => {
 		removeFromCart(itemId);
 		axios
-			.delete(`/api/cart/${itemId}`)
+			.delete(`${backendUrl}/api/cart/${itemId}`)
 			.catch((error) => console.error("Error removing item from cart:", error));
 			
 	};
@@ -33,7 +33,7 @@ const Cart = () => {
 		if (newQty < 1) return;
 		updateCartQty(itemId, newQty);
 		axios
-			.put(`/api/cart/${itemId}`, { qty: newQty })
+			.put(`${backendUrl}/api/cart/${itemId}`, { qty: newQty })
 			.catch((error) => console.error("Error updating quantity:", error));
 	};
 
