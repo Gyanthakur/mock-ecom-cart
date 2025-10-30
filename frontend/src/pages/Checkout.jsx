@@ -28,7 +28,9 @@ const Checkout = () => {
 	const handleCheckout = async () => {
 		setIsProcessing(true);
 		try {
-			const response = await axios.post(backendUrl + "/api/checkout", { cartItems: cart });
+			const response = await axios.post(backendUrl + "/api/checkout", {
+				cartItems: cart,
+			});
 			setReceipt(response.data);
 			setShowSuccess(true);
 			setTimeout(() => setShowSuccess(false), 3000);
@@ -140,6 +142,7 @@ const Checkout = () => {
 		});
 
 		// Totals Section
+				
 		yPos += 10;
 		doc.setDrawColor(200, 200, 200);
 		doc.line(20, yPos, pageWidth - 20, yPos);
@@ -147,11 +150,12 @@ const Checkout = () => {
 
 		doc.setFontSize(10);
 		const subtotal = receipt.cartItems.reduce(
-			(acc, item) => acc + item.qty * item.product.price,
-			0
+		(acc, item) => acc + item.qty * item.product.price,
+		0
 		);
 		const tax = subtotal * 0.18;
 		const shipping = 100;
+		const grandTotal = subtotal + tax + shipping; // ✅ Add shipping + tax
 
 		doc.text("Subtotal:", 130, yPos);
 		doc.text(`$${subtotal.toFixed(2)}`, 175, yPos);
@@ -172,7 +176,8 @@ const Checkout = () => {
 		doc.setFont(undefined, "bold");
 		doc.setFontSize(12);
 		doc.text("Grand Total:", 130, yPos + 3);
-		doc.text(`$${receipt.total.toFixed(2)}`, 175, yPos + 3);
+		doc.text(`$${grandTotal.toFixed(2)}`, 175, yPos + 3); // ✅ Updated value
+
 
 		// Footer
 		doc.setTextColor(100, 100, 100);
@@ -315,7 +320,20 @@ const Checkout = () => {
 									</div>
 									<div className="flex justify-between text-xl font-bold text-indigo-600 pt-2 border-t-2 border-indigo-200">
 										<span>Total Amount</span>
-										<span>${receipt.total.toFixed(2)}</span>
+										{/* <span>${receipt.total.toFixed(2)}</span> */}
+										<span className="font-medium">
+											$
+											{(
+												receipt.cartItems.reduce(
+													(acc, item) => acc + item.qty * item.product.price,0) + // subtotal
+												100 + // shipping
+												receipt.cartItems.reduce(
+													(acc, item) => acc + item.qty * item.product.price,
+													0
+												) *
+													0.18) // GST (18%)
+												.toFixed(2)}
+										</span>
 									</div>
 								</div>
 							</div>
