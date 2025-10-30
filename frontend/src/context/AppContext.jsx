@@ -66,8 +66,30 @@ export const AppProvider = ({ children }) => {
     });
   };
 
+  // ✅ Update item quantity in cart (for + / - buttons)
+  const updateCartQty = (itemId, newQty) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.map((item) =>
+        item.product._id === itemId ? { ...item, qty: newQty } : item
+      );
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+  };
+
   return (
-    <AppContext.Provider value={{ user, cart, login, logout, addToCart, removeFromCart, backendUrl }}>
+    <AppContext.Provider 
+      value={{ 
+        user, 
+        cart, 
+        login, 
+        logout, 
+        addToCart, 
+        removeFromCart, 
+        updateCartQty, 
+        backendUrl 
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

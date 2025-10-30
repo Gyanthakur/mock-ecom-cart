@@ -43,38 +43,38 @@ const Cart = () => {
 				{/* Header */}
 				<div className="flex items-center space-x-3 mb-8">
 					<ShoppingBag className="w-8 h-8 text-indigo-600" />
-					<h1 className="text-4xl font-bold text-gray-800">
+					<h1 className="text-3xl md:text-4xl font-bold text-gray-800">
 						Your Shopping Cart
 					</h1>
 				</div>
 
 				{cart.length === 0 ? (
 					/* Empty Cart State */
-					<div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-						<Package className="w-24 h-24 text-gray-300 mx-auto mb-4" />
-						<h2 className="text-2xl font-semibold text-gray-800 mb-2">
+					<div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
+						<Package className="w-20 h-20 md:w-24 md:h-24 text-gray-300 mx-auto mb-4" />
+						<h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
 							Your cart is empty
 						</h2>
 						<p className="text-gray-600 mb-6">Add some items to get started!</p>
 						<a
 							href="/"
-							className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
+							className="inline-block px-5 md:px-6 py-2.5 md:py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
 						>
 							Continue Shopping
 						</a>
 					</div>
 				) : (
-					<div className="grid lg:grid-cols-3 gap-8">
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
 						{/* Cart Items */}
 						<div className="lg:col-span-2 space-y-4">
 							{cart.map((item) => (
 								<div
 									key={item.product._id}
-									className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 p-6"
+									className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 p-4 md:p-6"
 								>
-									<div className="flex gap-6">
+									<div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
 										{/* Product Image */}
-										<div className="w-32 h-32 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+										<div className="w-full md:w-32 h-40 md:h-32 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
 											<img
 												src={item.product.imageUrl}
 												alt={item.product.name}
@@ -83,22 +83,22 @@ const Cart = () => {
 										</div>
 
 										{/* Product Details */}
-										<div className="flex-1 flex flex-col justify-between">
+										<div className="flex-1 w-full flex flex-col justify-between">
 											<div>
-												<h3 className="text-lg font-semibold text-gray-800 mb-1">
+												<h3 className="text-base md:text-lg font-semibold text-gray-800 mb-1">
 													{item.product.name}
 												</h3>
-												<p className="text-sm text-gray-600 mb-3">
+												<p className="text-sm md:text-sm text-gray-600 mb-3 line-clamp-3">
 													{item.product.description ||
 														"Premium quality product"}
 												</p>
-												<p className="text-2xl font-bold text-indigo-600">
+												<p className="text-xl md:text-2xl font-bold text-indigo-600">
 													${item.product.price.toFixed(2)}
 												</p>
 											</div>
 
 											{/* Quantity Controls */}
-											<div className="flex items-center justify-between mt-4">
+											<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 gap-3">
 												<div className="flex items-center space-x-3 bg-gray-100 rounded-lg p-1">
 													<button
 														onClick={() =>
@@ -108,7 +108,7 @@ const Cart = () => {
 													>
 														<Minus className="w-4 h-4 text-gray-600" />
 													</button>
-													<span className="text-lg font-semibold text-gray-800 w-8 text-center">
+													<span className="text-lg font-semibold text-gray-800 w-10 text-center">
 														{item.qty}
 													</span>
 													<button
@@ -123,7 +123,7 @@ const Cart = () => {
 
 												<button
 													onClick={() => handleRemove(item.product._id)}
-													className="flex items-center space-x-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
+													className="flex items-center justify-center sm:justify-start space-x-2 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
 												>
 													<Trash2 className="w-4 h-4" />
 													<span className="font-medium">Remove</span>
@@ -132,9 +132,9 @@ const Cart = () => {
 										</div>
 
 										{/* Item Total */}
-										<div className="text-right">
+										<div className="w-full md:w-auto text-right mt-2 md:mt-0">
 											<p className="text-sm text-gray-600 mb-1">Item Total</p>
-											<p className="text-xl font-bold text-gray-800">
+											<p className="text-lg md:text-xl font-bold text-gray-800">
 												${(item.product.price * item.qty).toFixed(2)}
 											</p>
 										</div>
@@ -145,12 +145,12 @@ const Cart = () => {
 
 						{/* Order Summary */}
 						<div className="lg:col-span-1">
-							<div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
-								<h2 className="text-2xl font-bold text-gray-800 mb-6">
+							<div className="bg-white rounded-xl shadow-lg p-4 md:p-6 lg:p-6 lg:sticky lg:top-24">
+								<h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
 									Order Summary
 								</h2>
 
-								<div className="space-y-4 mb-6">
+								<div className="space-y-3 md:space-y-4 mb-4 md:mb-6">
 									<div className="flex justify-between text-gray-600">
 										<span>Subtotal ({cart.length} items)</span>
 										<span className="font-medium">${subtotal.toFixed(2)}</span>
@@ -167,8 +167,8 @@ const Cart = () => {
 											${shippingCost.toFixed(2)}
 										</span>
 									</div>
-									<div className="border-t pt-4">
-										<div className="flex justify-between text-xl font-bold text-gray-800">
+									<div className="border-t pt-3">
+										<div className="flex justify-between text-lg md:text-xl font-bold text-gray-800">
 											<span>Total</span>
 											<span className="text-indigo-600">
 												${total.toFixed(2)}
